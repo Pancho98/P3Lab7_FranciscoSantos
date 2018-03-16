@@ -87,6 +87,12 @@ const void Racional::operator+=(const Racional& rightValue){
   std::cout << den << '\n';
   this->numerador=num;
   this->denominador=den;
+  for (int i = this->denominador * this->numerador; i > 1; i--) {
+    if ((this->denominador % i == 0) && (this->numerador % i == 0)) {
+      this->denominador /= i;
+      this->numerador /= i;
+    }
+  }
 
 }
 
@@ -101,6 +107,12 @@ const void Racional::operator-=(const Racional& rightValue){
   }
   this->numerador=num;
   this->denominador=den;
+  for (int i = this->denominador * this->numerador; i > 1; i--) {
+    if ((this->denominador % i == 0) && (this->numerador % i == 0)) {
+      this->denominador /= i;
+      this->numerador /= i;
+    }
+  }
 
 }
 
@@ -111,15 +123,27 @@ const void Racional::operator*=(const Racional& rightValue){
   den=(this->getDenominador())*(rightValue.getDenominador());
   this->numerador=num;
   this->denominador=den;
+  for (int i = this->denominador * this->numerador; i > 1; i--) {
+    if ((this->denominador % i == 0) && (this->numerador % i == 0)) {
+      this->denominador /= i;
+      this->numerador /= i;
+    }
+  }
 
 }
 
-const void Racional::operator*=(const Racional& rightValue){
+const void Racional::operator/=(const Racional& rightValue){
   int num;
   int den;
   num=(this->getNumerador())*(rightValue.getDenominador());
   den=(rightValue.getNumerador())*(this->getDenominador());
   this->numerador=num;
   this->denominador=den;
+  for (int i = this->denominador * this->numerador; i > 1; i--) {
+    if ((this->denominador % i == 0) && (this->numerador % i == 0)) {
+      this->denominador /= i;
+      this->numerador /= i;
+    }
+  }
 
 }
