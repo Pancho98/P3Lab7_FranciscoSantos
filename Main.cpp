@@ -1,8 +1,11 @@
 #include <iostream>
+#include <ios>
+#include<fstream>
 #include<vector>
 #include "Racional.h"
 using namespace std;
 int main(){
+	ofstream log1("log.txt",ios::app);
 	vector<Racional*> Fracciones;
 	int opc=1;
 	int frac1,frac2;
@@ -19,27 +22,29 @@ int main(){
 
 		switch (opc) {
 			case 1:{
+				if(Fracciones.size()>1){
+					for (int i = 0; i < Fracciones.size(); i++) {
+						cout << i << "." <<Fracciones[i]->getNumerador()<< "/" << Fracciones[i]->getDenominador() << '\n';
+					}
+					cout << "Ingrese numero de fraccion" << '\n';
+					cin>>frac1;
+					cout << "Ingrese otro numero de fraccion" << '\n';
+					cin>>frac2;
 
-				for (int i = 0; i < Fracciones.size(); i++) {
-					cout << i << "." <<Fracciones[i]->getNumerador()<< "/" << Fracciones[i]->getDenominador() << '\n';
-				}
-				cout << "Ingrese numero de fraccion" << '\n';
-				cin>>frac1;
-				cout << "Ingrese otro numero de fraccion" << '\n';
-				cin>>frac2;
-
-				int sumar;
-				cout << "1. Asignar y Sumar Racionalel" << '\n';
-				cout << "2. Sumar Racionales" << '\n';
-				cin>>sumar;
-				if (sumar==1) {
-					*Fracciones[frac1]+=*Fracciones[frac2];
-					cout << "La asignacion es: " << Fracciones[frac1]->getNumerador() << "/" << Fracciones[frac1]->getDenominador() <<'\n';
-				}else if(sumar==2){
-					Racional racional=(*Fracciones[frac1])+ (*Fracciones[frac2]);
-					cout << "La suma entre los Racionales es: " << racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
-				}else{
-				cout << "No existe esa opcion" << '\n';
+					int sumar;
+					cout << "1. Asignar y Sumar Racionalel" << '\n';
+					cout << "2. Sumar Racionales" << '\n';
+					cin>>sumar;
+					if (sumar==1) {
+						*Fracciones[frac1]+=*Fracciones[frac2];
+						cout << "La asignacion es: " << Fracciones[frac1]->getNumerador() << "/" << Fracciones[frac1]->getDenominador() <<'\n';
+					}else if(sumar==2){
+						Racional racional=(*Fracciones[frac1])+ (*Fracciones[frac2]);
+						cout << "La suma entre los Racionales es: " << racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
+						log1<<Fracciones[frac1]->getNumerador()<<"/"<<Fracciones[frac1]->getDenominador()<<" + "<<Fracciones[frac2]->getNumerador()<<"/"<<Fracciones[frac2]->getDenominador()<<" = "<<racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
+					}else{
+						cout << "No existe esa opcion" << '\n';
+					}
 				}
 			}
 			break;
@@ -64,6 +69,7 @@ int main(){
 				}else if(restar==2){
 					Racional racional=(*Fracciones[frac1])- (*Fracciones[frac2]);
 					cout << "La resta entre los Racionales es: " << racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
+					log1<<Fracciones[frac1]->getNumerador()<<"/"<<Fracciones[frac1]->getDenominador()<<" - "<<Fracciones[frac2]->getNumerador()<<"/"<<Fracciones[frac2]->getDenominador()<<" = "<<racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
 				}
 			}
 			break;
@@ -89,6 +95,7 @@ int main(){
 				}else if(multi==2){
 					Racional racional=(*Fracciones[frac1])* (*Fracciones[frac2]);
 					cout << "La multiplicacion entre los Racionales es: " << racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
+					log1<<Fracciones[frac1]->getNumerador()<<"/"<<Fracciones[frac1]->getDenominador()<<" * "<<Fracciones[frac2]->getNumerador()<<"/"<<Fracciones[frac2]->getDenominador()<<" = "<<racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
 				}
 			}
 			break;
@@ -112,6 +119,7 @@ int main(){
 				}else if(divi==2){
 					Racional racional=(*Fracciones[frac1])/ (*Fracciones[frac2]);
 					cout << "La division entre los Racionales es: " << racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
+					log1<<Fracciones[frac1]->getNumerador()<<"/"<<Fracciones[frac1]->getDenominador()<<" / "<<Fracciones[frac2]->getNumerador()<<"/"<<Fracciones[frac2]->getDenominador()<<" = "<<racional.getNumerador()<< "/" << racional.getDenominador() << '\n';
 				}
 		  }
 			break;
